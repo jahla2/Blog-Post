@@ -58,12 +58,12 @@ app.get("/posts/:postName", function (req, res) {
   //Loop in array
   posts.forEach(function (post) {
     const storedTitle = post.title;
-    //Check 
+    //Check and render to UI
     if (lodash.lowerCase(storedTitle) === lodash.lowerCase(requestedTitle)) {
-      console.log("Match found.");
-    }
-    else {
-      console.log("No match.")
+      res.render("post", {
+        title: post.title,
+        content: post.content
+      });
     }
   });
 });
